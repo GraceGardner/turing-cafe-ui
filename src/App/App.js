@@ -8,7 +8,13 @@ class App extends Component {
       reservations: []
     }
   }
-  
+
+  componentDidMount() {
+    fetch('http://localhost:3001/api/v1/reservations')
+    .then(response => response.json())
+    .then(data => this.setState({reservations: data}))
+  }
+
   render() {
     return (
       <div className="App">
