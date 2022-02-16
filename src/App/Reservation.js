@@ -14,11 +14,3 @@ const Reservation = ({id, name, data, time, number, cancelReservation}) => {
 }
 
 export default Reservation;
-
-// {
-// "id": 1,
-// "name": "Christie",
-// "date": "12/29",
-// "time": "7:00",
-// "number": 12
-// },
