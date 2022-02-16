@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {getData, deleteReservation, postReservation} from '../apiCalls.js'
 import Reservation from './Reservation.js';
 import Form from './Form.js';
 import './App.css';
@@ -12,38 +13,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/api/v1/reservations')
-    .then(response => response.json())
+    getData()
     .then(data => this.setState({reservations: data}))
   }
-
-  postReservation = (reservation) => {
-    fetch('http://localhost:3001/api/v1/reservations', {
-      method: 'post',
-      body: JSON.stringify({
-        name: `${reservation.name}`,
-        date: `${reservation.date}`,
-        time: `${reservation.time}`,
-        number: `${reservation.number}`
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => response.json())
-  }
-
-  deleteReservation = (id) => {
-    console.log(id)
-    fetch(`http://localhost:3001/api/v1/reservations/${id}`, {
-      method: 'delete',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => response.json())
-  }
-
 
   cancelReservation = (id) => {
     const updatedReservations =
@@ -53,12 +25,12 @@ class App extends Component {
       }
     })
     this.setState({reservations: updatedReservations})
-    this.deleteReservation(id)
+    deleteReservation(id)
   }
 
   makeReservation = (reservation) => {
     this.setState({reservations: [...this.state.reservations, reservation]})
-    this.postReservation(reservation)
+    postReservation(reservation)
   }
 
 
