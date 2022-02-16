@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Reservation from './Reservation.js';
+import Form from './Form.js';
 import './App.css';
 
 class App extends Component {
@@ -16,6 +17,10 @@ class App extends Component {
     .then(data => this.setState({reservations: data}))
   }
 
+
+  // http://localhost:3001/api/v1/reservations
+
+
   cancelReservation = (id) => {
     const updatedReservations =
     this.state.reservations.filter(reservation => {
@@ -26,13 +31,32 @@ class App extends Component {
     this.setState({reservations: updatedReservations})
   }
 
+  makeReservation = (reservation) => {
+    this.setState({reservations: [...this.state.reservations, reservation]})
+    postReservation(reservation)
+  }
+
+  postReservation = (reservation) => {
+    fetch('http://localhost:3001/api/v1/reservations', {
+      method: 'post',
+      body: JSON.stringify({
+        name: `${reservation.name}`,
+        date: `${reservation.date}`,
+        time: `${reservation.time}`,
+        number: `${reservation.number}`
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+  }
+
   render() {
     return (
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
-        <div className='resy-form'>
-
-        </div>
+        <Form makeReservation={this.makeReservation}/>
         <Reservation reservations={this.state.reservations} cancelReservation={this.cancelReservation}/>
       </div>
     )
