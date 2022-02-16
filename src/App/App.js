@@ -33,7 +33,16 @@ class App extends Component {
     .then(response => response.json())
   }
 
-  // http://localhost:3001/api/v1/reservations
+  deleteReservation = (id) => {
+    console.log(id)
+    fetch(`http://localhost:3001/api/v1/reservations/${id}`, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+  }
 
 
   cancelReservation = (id) => {
@@ -44,6 +53,7 @@ class App extends Component {
       }
     })
     this.setState({reservations: updatedReservations})
+    this.deleteReservation(id)
   }
 
   makeReservation = (reservation) => {

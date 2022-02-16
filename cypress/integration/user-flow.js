@@ -26,21 +26,7 @@ describe('user flow', () => {
       .should('include.text', 'Gracie')
 
       .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
-      .get('.cancel-button').last().click()
+
 
       .get('.reservation').last()
       .should('not.include.text', 'Gracie')
