@@ -16,6 +16,16 @@ class App extends Component {
     .then(data => this.setState({reservations: data}))
   }
 
+  cancelReservation = (id) => {
+    const updatedReservations =
+    this.state.reservations.filter(reservation => {
+      if(id !== reservation.id){
+        return reservation
+      }
+    })
+    this.setState({reservations: updatedReservations})
+  }
+
   render() {
     return (
       <div className="App">
@@ -23,12 +33,10 @@ class App extends Component {
         <div className='resy-form'>
 
         </div>
-        <Reservation reservations={this.state.reservations}/>
+        <Reservation reservations={this.state.reservations} cancelReservation={this.cancelReservation}/>
       </div>
     )
   }
 }
 
 export default App;
-
-cancelReservation(id)

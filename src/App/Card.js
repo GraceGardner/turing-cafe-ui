@@ -1,7 +1,7 @@
 import React from 'react';
 import './Card.css';
 
-const Card = ({id, name, data, time, number, cancelReservation}) => {
+const Card = ({id, name, date, time, number, cancelReservation}) => {
   return (
     <div className='reservation'>
       <h2 className='name'>{name}</h2>

@@ -1,0 +1,8 @@
+.reservation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2%;
+  padding: 3%;
+  background:rgba(255,255,255, 0.8)
+}
