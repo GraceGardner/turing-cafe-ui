@@ -17,6 +17,21 @@ class App extends Component {
     .then(data => this.setState({reservations: data}))
   }
 
+  postReservation = (reservation) => {
+    fetch('http://localhost:3001/api/v1/reservations', {
+      method: 'post',
+      body: JSON.stringify({
+        name: `${reservation.name}`,
+        date: `${reservation.date}`,
+        time: `${reservation.time}`,
+        number: `${reservation.number}`
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+  }
 
   // http://localhost:3001/api/v1/reservations
 
@@ -33,24 +48,9 @@ class App extends Component {
 
   makeReservation = (reservation) => {
     this.setState({reservations: [...this.state.reservations, reservation]})
-    postReservation(reservation)
+    this.postReservation(reservation)
   }
 
-  postReservation = (reservation) => {
-    fetch('http://localhost:3001/api/v1/reservations', {
-      method: 'post',
-      body: JSON.stringify({
-        name: `${reservation.name}`,
-        date: `${reservation.date}`,
-        time: `${reservation.time}`,
-        number: `${reservation.number}`
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(response => response.json())
-  }
 
   render() {
     return (

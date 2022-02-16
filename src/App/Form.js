@@ -18,19 +18,27 @@ class Form extends Component {
     })
   }
 
-  // reserve = (event) => {
-  //   event.preventDefault()
-  //
-  // }
+  reserve = (event) => {
+    event.preventDefault()
+    const reservation = this.state
+    this.props.makeReservation(reservation);
+    this.reset()
+  }
 
-  // reset = () => {
-  //
-  // }
+  reset = () => {
+    this.setState({
+      name: '',
+      date: undefined,
+      time: undefined,
+      number: undefined
+    })
+  }
 
   render() {
     return(
       <form>
         <input
+          className='name-input'
           type='text'
           id='name'
           value={this.state.name}
@@ -39,6 +47,7 @@ class Form extends Component {
         >
         </input>
         <input
+          className='date-input'
           type='date'
           id='date'
           value={this.state.date}
@@ -47,6 +56,7 @@ class Form extends Component {
         >
         </input>
         <input
+          className='time-input'
           type='time'
           id='time'
           value={this.state.time}
@@ -55,6 +65,7 @@ class Form extends Component {
         >
         </input>
         <input
+          className='number-input'
           type='number'
           id='number'
           value={this.state.number}
@@ -62,7 +73,12 @@ class Form extends Component {
           placeholder='Number of guests'
         >
         </input>
-        <button></button>
+        <button
+          className='reservation-button'
+          onClick={(event) => this.reserve(event)}
+        >
+          Make Reservation
+        </button>
       </form>
     )
   }
